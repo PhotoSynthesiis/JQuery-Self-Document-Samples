@@ -1,0 +1,247 @@
+<html>
+<head>
+<script src="../lib/jquery-1.8.0.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+$("#button1").click(function(){
+$("p").hide();
+});
+
+$("#test").click(function() {
+	$(this).hide();
+});
+
+$(".test2").click(function() {
+	$(this).hide();
+});
+
+$("#clickToFade").click(function() {
+	$(this).fadeOut();
+});
+
+$("#clickToToggle").click(function() {
+	$(".toggleTest").toggle("slow");
+	
+});
+
+$("#textToBeChanged").click(function() {
+	$(this).html("the text has been changed");
+});
+
+$("#clickToAppend").click(function() {
+	$(this).append(' Some text <b>and bold!<b>')
+})
+
+$("#button2").click(function() {
+	$("p").css("background-color","red");
+});
+
+$("#ajaxReplacement").click(function() {
+	$(this).load("../text/test.txt");
+});
+
+$("#callbackTest").click(function() {
+	$(this).hide("slow", function(){
+	alert("call back function");
+	});
+});
+
+$("#clickToAddClass").click(function() {
+	$("p:first").addClass("intro note");
+});
+
+$("#clickToRemoveClass").click(function() {
+	$("p:first").removeClass("intro");
+});
+
+$("#clickToChangeAttribute").click(function() {
+	$(this).attr("class","intro");
+});
+
+$("#button3").click(function() {
+	$(this).attr("disabled", "disabled");
+});
+
+$("#button4").click(function() {
+	$(":selected").hide();	
+});
+
+$("#button5").bind('click', function(event) {
+	$("#clickToToggleBindedButton").slideToggle();
+});
+
+$("input").keydown(function() {
+	$(this).css("background-color","red")
+});
+
+$("input").keyup(function() {
+	$(this).css("background-color","blue")
+});
+
+$("div").delegate("#button6","click",function(){
+	$("div").slideToggle();
+});
+
+$("#clickToShowPosition").click(function(event) {
+	return ("page position is x : " +event.pageX + ", y : " + event.pageY); 
+});
+
+$("#clickToShowPosition").click(function(event) {
+	$('#clickToShowPosition').html(event.result); 
+});
+
+$("#trigger1,#trigger2,#trigger3,#trigger4").click(function(event) {
+	$("div#triggerDiv").html("triggered by " + event.target$.nodeName);
+});
+
+$("#showWhichEventMadeByUser").bind('mouseover mouseout click dblclick', function(event) {
+	$(this).html("event type : " + event.type);
+});
+
+$("#focusToChangeColor").focus(function() {
+	$(this).css("background-color","red");
+});
+
+$("#focusToChangeColor").blur(function() {
+	$(this).css("background-color","yellow");
+});
+
+var i = 0;
+$("#keypressEvent").click(function() {
+	$("span").text(i += 1);
+});
+
+$("#selectTextInFiled").select(function() {
+	$(this).after('text been selected');
+});
+
+$("form").submit(function() {
+	alert("form has been submitted");
+});
+
+$("#clickToToggleColor").toggle(function() {
+	$(this).css("background-color","red");
+}, function() {
+	$(this).css("background-color","yellow");
+}, function() {
+	$(this).css("background-color","green");
+});
+
+$("#button7").click(function() {
+	$("#triggerToSelectText").trigger('select');
+});
+
+$("#clickToCloneText").click(function() {
+	$(this).append($(this).clone());
+});
+});
+
+
+</script>
+<style type="text/css">
+div.toggleTest
+{
+margin:0px;
+padding:5px;
+text-align:center;
+background:#e5eecc;
+border:solid 1px #c3c3c3;
+display: none;
+}
+.intro
+{
+font-size:120%;
+color:red;
+}
+.note
+{
+background-color:yellow;
+}
+</style>
+</head>
+
+<body>
+<h2>This is a heading</h2>
+<p id="test">This is a paragraph.</p>
+<p class="test2">This is another paragraph.</p>
+<p id="clickToFade" style="background:yellow;width:200px">Click to Fade</p>
+
+<div class="toggleTest">
+<p>
+	<ul>
+		<li>1. Diaby</li>
+		<li>2. Arteta</li>
+		<li>3. Giroud</li>
+	</ul>
+</p>
+</div>
+<p id="clickToToggle">Click To Toggle</p>
+
+<p id="textToBeChanged">click to change text</p>
+
+<p id="clickToAppend">Click to append text</p>
+
+<p id="ajaxReplacement">Click to replace by loading files from other sources</p>
+
+<p id="callbackTest">Click to call the callback function</p>
+
+<p id="clickToAddClass">Click to add class</p>
+
+<p id="clickToRemoveClass">Click to remove class</p>
+
+<p id="clickToChangeAttribute" class="note">Click To change attribute</p>
+
+<p id="clickToToggleBindedButton">click to toggle with binded button</p>
+
+<p id="clickToShowPosition">Click me to show the position of the mouse</p>
+
+<select multiple="multiple">
+  <option>Volvo</option>
+  <option selected="selected">Saab</option>
+  <option>Mercedes</option>
+  <option>Audi</option>
+</select><br />
+
+Key up and Key down<input type="text"/><br />
+
+<div>
+<p >delegate to a button</p>
+</div>
+
+<p id="trigger1">trigger event 1</p>
+<p id="trigger2">trigger event 2</p>
+<p id="trigger3">trigger event 3</p>
+<p id="trigger4">trigger event 4</p>
+<div id="triggerDiv"></div>
+
+<p id="showWhichEventMadeByUser">show which event made by user</p>
+
+<p id="keypressEvent">you have pressed the key <span></span> times</p>
+
+<p id="clickToToggleColor">click to toggle and switch among defined elements</p>
+
+<p id="clickToCloneText">click to clone the text</p>
+
+<input id="triggerToSelectText" type="text" value="click button to trigger selection of words here"/>
+
+<input id="focusToChangeColor" type="text" value="focus to change color"/><br />
+
+<input id="selectTextInFiled" value="select this text"/><br />
+
+<form name="input" action="" method="get">
+	first name : <input type="text"/><br />
+	last  name : <input type="text" /><br />
+	<input type="submit" value="submit" />
+</form>
+
+<button id="button1">Click me</button><br />
+<button id="button2">Click to change CSS of P Element</button><br />
+<button id="button3">Initially Disabled, Click To Enable</button><br />
+<button id="button4">Click to hide the selected option</button><br />
+<button id="button5">bind event for a button</button><br />
+<button id="button6">delegate button</button><br />
+<button id="button7">click to trigger to select text in the input field</button>
+
+</body>
+</html> 
